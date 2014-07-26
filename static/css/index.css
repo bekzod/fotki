@@ -1,0 +1,134 @@
+.header-view{
+  padding-top: 20px;
+  padding-left: 15px;
+}
+
+.photo-view {
+  position:relative;
+  width: 150px;
+  height: 150px;
+  float: left;
+  margin: 20px 0 0 20px;
+  background-color:#ccc;
+  border: 1px solid #999;
+}
+
+.photo-view .photo-info {
+  position:absolute;
+  width: 152px;
+  height: 152px;
+  opacity:0.8;
+  background-color: #ccc;
+  left:-1px; top:-1px;
+  z-index: 10000;
+  padding: 5px;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  color:#666;
+}
+
+.photo-view .photo-info .highlighted {
+  color:black;
+}
+
+.photo-view .title {
+  position: absolute;
+  opacity: 0.8;
+  left:0;
+  top: 110px;
+  width:140px;
+  height:40px;
+  font-weight: 800;
+  color:white;
+  background-color:#999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1px 5px 1px 5px;
+}
+
+.photo-view .photo-container {
+  width: 150px;
+  height: 150px;
+  display: block;
+  background-color: #ccc;
+  text-decoration: none;
+}
+
+.photo-view .photo-container img {
+  position: absolute;
+  left: 50%; top:50%;
+}
+
+
+
+
+.loader {
+  background: white url('../img/loader.gif') no-repeat center;
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.add-sign {
+  background:#ccc url('../img/add-sign.png') no-repeat center;
+}
+
+
+.full-photo-view {
+}
+
+.full-photo-view > .controls {
+  position:fixed;
+  width:200px;
+  height:50px;
+  bottom:20px;
+  left:50%;
+  margin-left:-100px;
+  border:1px solid #666;
+}
+
+
+.full-photo-view > .controls > a.option-btn {
+  opacity:0.9;
+  height:50px;
+  width:50px;
+  display: block;
+  float:left;
+  padding-top:15px;
+  background-color: #999;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.full-photo-view > .controls > a.option-btn.delete-btn {
+  background: #f02424 url('../img/delete.png') no-repeat center;
+}
+
+.full-photo-view > .controls > .option-btn:hover {
+  background-color: #CCC;
+}
+
+
+.full-photo-view > img {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.login-view .login-btn{
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  margin-top:-8px;
+  margin-left:-80.5px;
+}
+
+.login-view {
+  height: 500px;
+  position: relative;
+}

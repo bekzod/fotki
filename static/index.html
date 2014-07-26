@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My App</title>
+	<link rel="stylesheet" href="./vendor/skeleton/base.css"/>
+	<link rel="stylesheet" href="./vendor/skeleton/layout.css"/>
+	<link rel="stylesheet" href="./vendor/skeleton/skeleton.css"/>
+	<link rel="stylesheet" href="./css/index.css"/>
+
+  <script id='login-view-tmpl' type="text/html">
+    <a href="/loginOauth" class="button login-btn">Authourize App With Yandex</a>
+  </script>
+
+  <script id='albums-view-tmpl' type="text/html">
+    <div id="albums-container"></div>
+    <a href='#add/album' class="photo-view add-sign"></a>
+  </script>
+
+  <script id='photos-view-tmpl' type="text/html">
+    <div id="photos-container"></div>
+    <a href='#album/{{albumId}}/add/photo'  class="photo-view add-sign"></a>
+	</script>
+
+  <script id='album-add-view-tmpl' type="text/html">
+    <form action="" class='offset-by-one'>
+      <label>Title</label>
+      <input name='title' type="text" id="regularInput" />
+
+      <label>Summary</label>
+      <textarea name='summary' id="regularTextarea"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </script>
+
+	<script id='photo-add-view-tmpl' type="text/html">
+		<form action="" class='offset-by-one'>
+			<label>Title</label>
+      <input name='title' type="text" />
+      <input name='album' value="{{albumId}}" type="hidden" />
+     <fieldset>
+      <input type='file' name='image' />
+     </fieldset>
+      <label>Summary</label>
+      <textarea name='summary'></textarea>
+     <fieldset>
+      <label>Access Type</label>
+      <label>
+         <input type="radio" name="access" value="public" />
+         <span>Public</span>
+       </label>
+      <label>
+         <input type="radio" name="access" value="friends" />
+         <span>Friends</span>
+      </label>
+      <label>
+         <input type="radio" checked name="access" value="private" />
+         <span>Private</span>
+      </label>
+     </fieldset>
+
+			<button type="submit">Submit</button>
+		</form>
+	</script>
+
+  <script id='header-view-tmpl' type="text/html">
+    <div class="header-view">
+      <div class="columns twelve">
+        <h3>Your Album</h3>
+      </div>
+      <div class="columns three">
+        <a href="#albums" class="button">Albums</a>
+        <a href="#logout" class="button">logout</a>
+      </div>
+			<hr>
+		</div>
+	</script>
+
+  <script id='album-view-tmpl' type="text/html">
+    <a class="photo-container" href='#album/{{id}}'>
+      <div class="photo-info" style='display:none;'>
+        <span class="highlighted">{{title}}</span><br>
+        <span class="highlighted">Published:</span> {{getPublishedDate()}}<br>
+      </div>
+      <img style='display:none; margin-left:{{-image().width/2}}px; margin-top:{{-image().height/2}}px' src="{{ image().href }}" alt="{{title}}"/>
+    </a>
+    <div class='title'>{{title}}</div>
+  </script>
+
+  <script id='photo-view-tmpl' type="text/html">
+    <a class="photo-container" href='#photo/{{id}}'>
+      <div class="photo-info" style='display:none;'>
+        <span class="highlighted">{{title}}</span><br>
+        <span class="highlighted">Published:</span> {{getPublishedDate()}}<br>
+        <span class="highlighted">Tags:</span> {{getTags()}}<br>
+      </div>
+      <img style='display:none; margin-left:{{ -image().width/2}}px; margin-top:{{-image().height/2}}px' src="{{ image().href }}" alt="{{title}}"/>
+    </a>
+    <div class='title'>{{title}}</div>
+  </script>
+
+  <script id='full-photo-view-tmpl' type="text/html">
+	  <img height='{{img[currentSelectedSize].height}}' width='{{img[currentSelectedSize].width}}' style='display:none;margin-left:{{-img[currentSelectedSize].width/2}}px; margin-top:{{-img[currentSelectedSize].height/2}}px ' src="{{ img[currentSelectedSize].href }}" alt="{{title}}"/>
+    <div class="controls">
+      <a class='option-btn' data-image-size='S' href="javascript:void(0)">S</a>
+      <a class='option-btn' data-image-size='M' href="javascript:void(0)">M</a>
+      <a class='option-btn' data-image-size='L' href="javascript:void(0)">L</a>
+      <a class='option-btn delete-btn' href="javascript:void(0)"></a>
+    </div>
+  </script>
+
+</head>
+<body>
+	<div id="header" class='container'></div>
+	<div id="main" class='container'></div>
+	<div id="footer" class='container'></div>
+	<div class="loader"></div>
+
+	<script src='./vendor/require.js' data-main='./js/main'></script>
+</body>
+</html>
