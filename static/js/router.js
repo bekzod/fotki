@@ -44,10 +44,7 @@ define(['utils', 'marionette'], function(Utils){
 			} else {
 				window.app.vent.trigger('app:login');
 			}
-		},
-
-		showLogout: function(){
-			window.app.vent.trigger('app:logout');
 		}
+
 	});
 });

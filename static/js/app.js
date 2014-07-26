@@ -32,7 +32,6 @@ define([
 	var albums;
 	app.urls = {};
 	app.addInitializer( function(){
-		if( !Utils.getCookie('cid') ) return app.vent.trigger('app:initialized', false);
 		$.ajax('/api/me/')
 			.done( function(json) {
 				app.urls.album = Utils.removeHost( json.collections['album-list'].href );
@@ -53,11 +52,6 @@ define([
 		albums.fetch({ success: function(){
 			app.hideLoader();
 		}});
-	});
-
-	app.vent.on('app:logout', function(){
-		Utils.clearCookie('cid'); // backup cookie
-		Backbone.history.navigate("login");
 	});
 
 	app.vent.on('app:add:album', function(){

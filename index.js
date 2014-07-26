@@ -14,7 +14,7 @@ var YANDEX_FOTKI_APP_SECRET = '0255d42605574a1aa252c811c6e6ac53';
 
 app.all('/api*', function(req,res){
   var oauth = req.session.access_token;
-	if( !req.cookies.cid || !oauth ){
+	if( !oauth ){
 		req.session.destroy();
 		return res.status(401).send('');
 	}
@@ -53,24 +53,25 @@ app.get('/oauth', function(req,res){
     var params = JSON.parse(body);
 		if( params.access_token && params.access_token.length === 32 ){
 			req.session.access_token = params.access_token;
-			res.cookie( 'cid', Math.random().toString(16).split('.')[1], {
-			 expires: req.session.cookie.expires,
-			 httpOnly: false
-			});
 		}
 		res.redirect('/');
 	});
 });
 
-app.get(/^\/(?!api|oauth|loginOauth)(.+)$/, function(req,res){
+app.get(/^\/(?!api|oauth|loginOauth|logoutOauth)(.+)$/, function(req,res){
   res.redirect('/#' + req.path.substr(1));
 });
 
 
 app.get('/loginOauth', function(req,res){
-	res.redirect(
-		'https://oauth.yandex.ru/authorize?response_type=code&client_id=' + YANDEX_FOTKI_APP_ID
-	);
+  res.redirect(
+    'https://oauth.yandex.ru/authorize?response_type=code&client_id=' + YANDEX_FOTKI_APP_ID
+  );
+});
+
+app.get('/logoutOauth', function(req,res){
+  req.session.destroy();
+  res.redirect('/');
 });
 
 app.listen( process.env.PORT || 9000 );
