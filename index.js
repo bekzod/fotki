@@ -50,12 +50,12 @@ app.get('/oauth', function(req,res){
 			client_secret: YANDEX_FOTKI_APP_SECRET
 		}
 	}, function (e, r, body) {
-		var params = JSON.parse(body);
+    var params = JSON.parse(body);
 		if( params.access_token && params.access_token.length === 32 ){
 			req.session.access_token = params.access_token;
 			res.cookie( 'cid', Math.random().toString(16).split('.')[1], {
 			 expires: req.session.cookie.expires,
-			 httpOnly: true
+			 httpOnly: false
 			});
 		}
 		res.redirect('/');

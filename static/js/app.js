@@ -31,7 +31,7 @@ define([
 
 	var albums;
 	app.urls = {};
-	app.addInitializer(function(){
+	app.addInitializer( function(){
 		if( !Utils.getCookie('cid') ) return app.vent.trigger('app:initialized', false);
 		$.ajax('/api/me/')
 			.done( function(json) {
