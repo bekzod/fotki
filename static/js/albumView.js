@@ -18,9 +18,6 @@ define(['marionette'],function(){
       this.ui.photoInfo.stop(true).fadeOut();
       this.ui.title.stop(true).fadeIn();
     },
-    initialize: function(){
-      console.log(this.model);
-    },
 		onRender: function () {
       this.$('img').one('load', _.bind( this.onImageLoad, this));
     },
