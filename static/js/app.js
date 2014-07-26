@@ -32,7 +32,7 @@ define([
 	var albums;
 	app.urls = {};
 	app.addInitializer(function(){
-		// if( !Utils.getCookie('cid') ) return app.vent.trigger('app:initialized', false);
+		if( !Utils.getCookie('cid') ) return app.vent.trigger('app:initialized', false);
 		$.ajax('/api/me/')
 			.done( function(json) {
 				app.urls.album = Utils.removeHost( json.collections['album-list'].href );

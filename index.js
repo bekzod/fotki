@@ -13,12 +13,11 @@ var YANDEX_FOTKI_APP_ID = '8320fe58bcfa45429153c2780037002a';
 var YANDEX_FOTKI_APP_SECRET = '0255d42605574a1aa252c811c6e6ac53';
 
 app.all('/api*', function(req,res){
-  // var oauth = req.session.access_token;
-	var oauth = 'd92fdf89d0fb492e91ab4e0057558a61'
-	// if( !req.cookies.cid || !oauth ){
-	// 	req.session.destroy();
-	// 	return res.status(401).send('');
-	// }
+  var oauth = req.session.access_token;
+	if( !req.cookies.cid || !oauth ){
+		req.session.destroy();
+		return res.status(401).send('');
+	}
 
 	var requestParams = {
 		url:'http://api-fotki.yandex.ru' + req.path,
